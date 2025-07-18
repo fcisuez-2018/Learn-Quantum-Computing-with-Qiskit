@@ -56,37 +56,37 @@ qiskit_in_C/
 
 1. Change into your local clone of Qiskit:  
 
-        ```c
+        
         cd ~/qiskit  
-        ```
+        
 
 2. Ensure the Python runtime library is discoverable:  
     
-        ```c
+        
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/<user>/miniconda3/lib  
-        ```
+        
 
 3. Compile the Rust crate as a C‑compatible shared library:  
 
-        ```c    
+           
         cargo rustc --release --crate-type=cdylib -p qiskit‑cext  
-        ```
+        
 
    - Outputs `target/release/libqiskit_cext.so`
 
 4. Generate the primary C header with `cbindgen`:  
     
-        ```c
+        
         mkdir -p dist/c/include  
         cbindgen \
           --crate qiskit‑cext \
           --output dist/c/include/qiskit.h  
-        ```
+        
 
 5. Create the supplementary complex‑number header:  
 
 
-        ```c
+        
         mkdir -p dist/c/include/qiskit  
         cat << 'EOF' > dist/c/include/qiskit/complex.h
         #ifndef QISKIT_COMPLEX_H
@@ -99,7 +99,7 @@ qiskit_in_C/
 
         #endif
         EOF  
-        ```
+        
 
 
 
@@ -107,25 +107,25 @@ qiskit_in_C/
 
 1. Create your demo directory and subfolders:  
 
-        ```c
+        
         mkdir -p ~/qiskit_in_C/include/qiskit  
         mkdir -p ~/qiskit_in_C/lib  
-        ```
+        
 
 2. Copy the compiled library:  
     
-        ```c
+        
         cp target/release/libqiskit_cext.so ~/qiskit_in_C/lib/  
-        ```
+        
 
 3. Copy generated headers:  
     
-        ```c
+        
         cp dist/c/include/qiskit.h \
            ~/qiskit_in_C/include/  
         cp dist/c/include/qiskit/complex.h \
            ~/qiskit_in_C/include/qiskit/  
-        ```
+        
 
 ---
 
@@ -135,19 +135,19 @@ qiskit_in_C/
 
 1. Change into your demo folder:  
     
-        ```c
+        
         cd ~/qiskit_in_C 
-        ``` 
+        
 
 2. Invoke GCC with the proper include and link paths:  
     
-        ```c
+        
         gcc example.c \
           -o example \
           -I./include \
           -L./lib -lqiskit_cext \
           -Wl,-rpath,"$(pwd)/lib"  
-        ```
+        
 
    - `-I./include` – header lookup  
    - `-L./lib -lqiskit_cext` – link against `libqiskit_cext.so`  
@@ -157,16 +157,16 @@ qiskit_in_C/
 
 1. If not using embedded rpath, export again:  
 
-        ```c
+        
     
         export LD_LIBRARY_PATH=$(pwd)/lib:/home/<user>/miniconda3/lib  
-        ```
+        
 
 2. Execute:  
     
-        ```c
+        
         ./example  
-        ```
+        
 
 **Expected output**  
 
