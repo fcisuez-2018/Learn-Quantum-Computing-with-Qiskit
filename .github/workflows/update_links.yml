@@ -56,4 +56,10 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m 'chore: update colab links' && git push)
+          # Check if there are changes to commit
+          if ! git diff --quiet --staged; then
+            git commit -m 'chore: update colab links'
+            # Fetch remote changes and rebase our local changes on top of them
+            git pull --rebase origin main
+            git push origin main
+          fi
