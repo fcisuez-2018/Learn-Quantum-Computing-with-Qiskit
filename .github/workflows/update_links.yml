@@ -18,8 +18,9 @@ jobs:
 
       - name: Run Update Script
         env:
-          OLD_URL: 'https://colab.research.google.com/github/MonitSharma/Learn-Quantum-Computing-with-Qiskit'
-          NEW_URL: 'https://colab.research.google.com/github/fcisuez-2018/Learn-Quantum-Computing-with-Qiskit'
+                                                      
+          OLD_URL: '/github.com/MonitSharma/'
+          NEW_URL: '/github/fcisuez-2018/'
         run: |
           python3 -c "
           import os
