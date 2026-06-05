@@ -28,18 +28,21 @@ jobs:
           old_url = os.getenv('OLD_URL')
           new_url = os.getenv('NEW_URL')
           
+          if old_url is None or new_url is None:
+              print('Error: Environment variables not set.')
+              exit(1)
+
           # Find all .ipynb files recursively
           for filepath in glob.glob('**/*.ipynb', recursive=True):
               with open(filepath, 'r', encoding='utf-8') as f:
                   content = f.read()
               
-              if old_user in content:
+              if old_url in content:
                   print(f'Updating {filepath}...')
-                  new_content = content.replace(old_user, new_user)
+                  new_content = content.replace(old_url, new_url)
                   with open(filepath, 'w', encoding='utf-8') as f:
                       f.write(new_content)
-          "
-
+          
       - name: Commit and Push changes
         run: |
           git config --global user.name 'github-actions[bot]'
