@@ -18,15 +18,15 @@ jobs:
 
       - name: Run Update Script
         env:
-          OLD_USER: 'MonitSharma'
-          NEW_USER: 'fcisuez-2018'
+          OLD_URL: 'https://colab.research.google.com/github/MonitSharma/Learn-Quantum-Computing-with-Qiskit'
+          NEW_URL: 'https://colab.research.google.com/github/fcisuez-2018/Learn-Quantum-Computing-with-Qiskit'
         run: |
           python3 -c "
           import os
           import glob
           
-          old_user = os.getenv('https://colab.research.google.com/github/MonitSharma/Learn-Quantum-Computing-with-Qiskit')
-          new_user = os.getenv('https://colab.research.google.com/github/fcisuez-2018/Learn-Quantum-Computing-with-Qiskit')
+          old_url = os.getenv('OLD_URL')
+          new_url = os.getenv('NEW_URL')
           
           # Find all .ipynb files recursively
           for filepath in glob.glob('**/*.ipynb', recursive=True):
