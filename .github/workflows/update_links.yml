@@ -33,7 +33,7 @@ jobs:
               print('Error: Environment variables are not set or are not strings.')
               exit(1)
 
-          for filepath in glob.glob('**/*.ipynb', recursive=True):
+          for filepath in glob.glob('**/*.*', recursive=True):
               try:
                   with open(filepath, 'r', encoding='utf-8') as f:
                       content = f.read()
