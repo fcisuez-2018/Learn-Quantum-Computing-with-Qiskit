@@ -28,20 +28,28 @@ jobs:
           old_url = os.getenv('OLD_URL')
           new_url = os.getenv('NEW_URL')
           
-          if old_url is None or new_url is None:
-              print('Error: Environment variables not set.')
+          # Ensure variables are valid strings
+          if not isinstance(old_url, str) or not isinstance(new_url, str):
+              print('Error: Environment variables are not set or are not strings.')
               exit(1)
 
-          # Find all .ipynb files recursively
           for filepath in glob.glob('**/*.ipynb', recursive=True):
-              with open(filepath, 'r', encoding='utf-8') as f:
-                  content = f.read()
-              
-              if old_url in content:
-                  print(f'Updating {filepath}...')
-                  new_content = content.replace(old_url, new_url)
-                  with open(filepath, 'w', encoding='utf-8') as f:
-                      f.write(new_content)
+              try:
+                  with open(filepath, 'r', encoding='utf-8') as f:
+                      content = f.read()
+                  
+                  # Skip if content is None or empty
+                  if not content:
+                      continue
+                      
+                  if old_url in content:
+                      print(f'Updating {filepath}...')
+                      new_content = content.replace(old_url, new_url)
+                      with open(filepath, 'w', encoding='utf-8') as f:
+                          f.write(new_content)
+              except Exception as e:
+                  print(f'Could not process file {filepath}: {e}')
+                  continue
           "
       - name: Commit and Push changes
         run: |
