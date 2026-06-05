@@ -1,4 +1,4 @@
-[←←Back to Homepage](https://github.com/fcisuez-2018/Learn-Quantum-Computing-with-Qiskit)
+[←←Back to Homepage](https://fcisuez-2018.github.io/Learn-Quantum-Computing-with-Qiskit/)
 
 
 # Learn Quantum Computing with Qiskit
