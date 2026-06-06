@@ -19,8 +19,8 @@ jobs:
       - name: Run Update Script
         env:
                                                       
-          OLD_URL: '/github.com/MonitSharma/'
-          NEW_URL: '/github/fcisuez-2018/'
+          OLD_URL: 'https://github/fcisuez-2018/Quantum-Computing-with-Qiskit-and-IBMQ'
+          NEW_URL: 'https://colab.research.google.com/github/fcisuez-2018'
         run: |
           python3 -c "
           import os
@@ -34,7 +34,7 @@ jobs:
               print('Error: Environment variables are not set or are not strings.')
               exit(1)
 
-          for filepath in glob.glob('**/*.*', recursive=True):
+          for filepath in glob.glob('**/*.ipynb', recursive=True):
               try:
                   with open(filepath, 'r', encoding='utf-8') as f:
                       content = f.read()
