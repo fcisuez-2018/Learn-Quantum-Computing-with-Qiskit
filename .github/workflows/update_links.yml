@@ -19,8 +19,8 @@ jobs:
       - name: Run Update Script
         env:
                                                       
-          OLD_URL: 'https://github/fcisuez-2018/Quantum-Computing-with-Qiskit-and-IBMQ'
-          NEW_URL: 'https://colab.research.google.com/github/fcisuez-2018'
+          OLD_URL: 'https://colab.research.google.com/github/fcisuez-2018/blob/'
+          NEW_URL: 'https://colab.research.google.com/github/fcisuez-2018/Learn-Quantum-Computing-with-Qiskit/blob'
         run: |
           python3 -c "
           import os
